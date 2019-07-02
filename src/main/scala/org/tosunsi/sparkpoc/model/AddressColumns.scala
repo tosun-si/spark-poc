@@ -15,4 +15,8 @@ object AddressColumns {
   val OLD_EV_NAME = "ANCIEN_NOM_EV"
   val CITY_SITE = "CITY_SITE"
   val SCHOOLS = "SCHOOLS"
+  val BIGGER_SCHOOL = "BIGGER_SCHOOL"
+
+  val SCHOOL_NAME = "name"
+  val SCHOOL_NB_STUDENT = "studentsNb"
 }

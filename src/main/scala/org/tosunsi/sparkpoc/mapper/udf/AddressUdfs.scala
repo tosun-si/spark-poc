@@ -19,7 +19,7 @@ object AddressUdfs {
   val addressLabelUdf = udf(addressLabelMapper)
   val evtNameUdf = udf(evtNameMapper)
   val schoolsUdf = udf(schoolsSupplier)
-  val biggerSchoolUdf = udf(biggestSchoolMapper)
+  val biggestSchoolUdf = udf(biggestSchoolMapper)
 
   private def toAddressLabel(street: String, zipCode: String): String = {
     s"$street $zipCode"

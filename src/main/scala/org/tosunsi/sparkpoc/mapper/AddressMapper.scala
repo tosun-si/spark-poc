@@ -19,7 +19,7 @@ class AddressMapper(implicit sparkSession: SparkSession) extends Mapper {
       .withColumn(EVT_NAME, evtNameUdf(col(EV_NAME), col(OLD_EV_NAME)))
       .withColumn(COUNTRY, lit("France"))
       .withColumn(SCHOOLS, schoolsUdf())
-      .withColumn(BIGGER_SCHOOL, biggerSchoolUdf(col(SCHOOLS)))
+      .withColumn(BIGGEST_SCHOOL, biggerSchoolUdf(col(SCHOOLS)))
       .addSiteCity()
   }
 

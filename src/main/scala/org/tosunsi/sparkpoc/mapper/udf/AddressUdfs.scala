@@ -13,13 +13,13 @@ object AddressUdfs {
   private val evtNameMapper: (String, String) => String = toEvtName
   private val citySiteMapper: (String, String) => String = toCitySiteLabel
   private val schoolsSupplier: () => Seq[School] = getSchools
-  private val biggerSchoolMapper: Seq[Row] => School = toBiggerSchool
+  private val biggestSchoolMapper: Seq[Row] => School = toBiggestSchool
 
   val citySiteUdf = udf(citySiteMapper)
   val addressLabelUdf = udf(addressLabelMapper)
   val evtNameUdf = udf(evtNameMapper)
   val schoolsUdf = udf(schoolsSupplier)
-  val biggerSchoolUdf = udf(biggerSchoolMapper)
+  val biggerSchoolUdf = udf(biggestSchoolMapper)
 
   private def toAddressLabel(street: String, zipCode: String): String = {
     s"$street $zipCode"
@@ -41,7 +41,7 @@ object AddressUdfs {
     )
   }
 
-  private def toBiggerSchool(schools: Seq[Row]): School = {
+  private def toBiggestSchool(schools: Seq[Row]): School = {
     schools
       .map(toSchool)
       .maxBy(_.studentsNb)

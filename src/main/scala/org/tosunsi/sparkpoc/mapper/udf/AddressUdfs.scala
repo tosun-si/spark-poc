@@ -9,17 +9,11 @@ import org.tosunsi.sparkpoc.model.School
  */
 object AddressUdfs {
 
-  private val addressLabelMapper: (String, String) => String = toAddressLabel
-  private val evtNameMapper: (String, String) => String = toEvtName
-  private val citySiteMapper: (String, String) => String = toCitySiteLabel
-  private val schoolsSupplier: () => Seq[School] = getSchools
-  private val biggestSchoolMapper: Seq[Row] => School = toBiggestSchool
-
-  val citySiteUdf = udf(citySiteMapper)
-  val addressLabelUdf = udf(addressLabelMapper)
-  val evtNameUdf = udf(evtNameMapper)
-  val schoolsUdf = udf(schoolsSupplier)
-  val biggestSchoolUdf = udf(biggestSchoolMapper)
+  val citySiteUdf = udf(toCitySiteLabel _)
+  val addressLabelUdf = udf(toAddressLabel _)
+  val evtNameUdf = udf(toEvtName _)
+  val schoolsUdf = udf(getSchools _)
+  val biggestSchoolUdf = udf(toBiggestSchool _)
 
   private def toAddressLabel(street: String, zipCode: String): String = {
     s"$street $zipCode"
